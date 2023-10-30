@@ -3,14 +3,55 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnergyReminder.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="500"
              x:Class="EnergyReminder.Views.MainView"
              x:DataType="vm:MainViewModel">
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
          to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
+        <vm:MainViewModel />
+    </Design.DataContext>
+    <Grid>
+        <StackPanel>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" Margin="50,60,0,0">
+                <TextBlock VerticalAlignment="Center" Margin="0,0,0,0">当前绑定的账号:</TextBlock>
+                <ComboBox VerticalAlignment="Center" Margin="20,0,0,0" SelectedIndex="{Binding AccountIndex}">
+                    <ComboBoxItem>账号1</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="40,30,0,0">
+                <StackPanel.Styles>
+                    <Style Selector="TextBlock">
+                        <Setter Property="FontSize" Value="14" />
+                    </Style>
+                </StackPanel.Styles>
+                <TextBlock VerticalAlignment="Center" Margin="0,0,0,0">修改当前体力值：</TextBlock>
+                <TextBox VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding NewAmountOfEnergy}" />
+                <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{Binding StartCalculate}">确定修改</Button>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="-5,30,0,0" HorizontalAlignment="Center">
+                <TextBlock Margin="0,0,0,0" VerticalAlignment="Center">当前体力值：</TextBlock>
+                <TextBlock VerticalAlignment="Center" Text="{Binding AmountOfEnergy}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="-5,30,0,0">
+                <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">体力补满所需时长：</TextBlock>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0"
+                           Text="{Binding RestOfTime}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="-10,30,0,0">
+                <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">下一次体力补满的时间点：</TextBlock>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0"
+                           Text="{Binding TimeOfFullEnergy}" />
+            </StackPanel>
+
+        </StackPanel>
+
+
+    </Grid>
+
 </UserControl>

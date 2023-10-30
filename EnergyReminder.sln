@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyReminder", "EnergyReminder\EnergyReminder\EnergyReminder.csproj", "{1B67DE09-FD5E-4757-9D70-C9C9010B57DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyReminder.Android", "EnergyReminder\EnergyReminder.Android\EnergyReminder.Android.csproj", "{A3C22885-A8F4-447A-AAE5-00D9F37BA580}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyReminder.Desktop", "EnergyReminder\EnergyReminder.Desktop\EnergyReminder.Desktop.csproj", "{EF737DBF-491B-4CEF-849F-49F570BE08C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyReminder.iOS", "EnergyReminder\EnergyReminder.iOS\EnergyReminder.iOS.csproj", "{257C0D9B-4947-4447-9D77-DD121FD30D49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyReminder.Browser", "EnergyReminder\EnergyReminder.Browser\EnergyReminder.Browser.csproj", "{6523F992-69C1-4CF2-A03B-85189E5E424E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B67DE09-FD5E-4757-9D70-C9C9010B57DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B67DE09-FD5E-4757-9D70-C9C9010B57DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B67DE09-FD5E-4757-9D70-C9C9010B57DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B67DE09-FD5E-4757-9D70-C9C9010B57DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C22885-A8F4-447A-AAE5-00D9F37BA580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3C22885-A8F4-447A-AAE5-00D9F37BA580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3C22885-A8F4-447A-AAE5-00D9F37BA580}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A3C22885-A8F4-447A-AAE5-00D9F37BA580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3C22885-A8F4-447A-AAE5-00D9F37BA580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3C22885-A8F4-447A-AAE5-00D9F37BA580}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EF737DBF-491B-4CEF-849F-49F570BE08C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF737DBF-491B-4CEF-849F-49F570BE08C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF737DBF-491B-4CEF-849F-49F570BE08C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF737DBF-491B-4CEF-849F-49F570BE08C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257C0D9B-4947-4447-9D77-DD121FD30D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257C0D9B-4947-4447-9D77-DD121FD30D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257C0D9B-4947-4447-9D77-DD121FD30D49}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{257C0D9B-4947-4447-9D77-DD121FD30D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257C0D9B-4947-4447-9D77-DD121FD30D49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257C0D9B-4947-4447-9D77-DD121FD30D49}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6523F992-69C1-4CF2-A03B-85189E5E424E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6523F992-69C1-4CF2-A03B-85189E5E424E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6523F992-69C1-4CF2-A03B-85189E5E424E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6523F992-69C1-4CF2-A03B-85189E5E424E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

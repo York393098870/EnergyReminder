@@ -7,7 +7,11 @@ public partial class MainViewModel
     public int AccountIndex
     {
         get => _accountIndex;
-        set => this.RaiseAndSetIfChanged(ref _accountIndex, value);
+        set
+        {
+            this.RaiseAndSetIfChanged(ref _accountIndex, value);
+            ChangedItem(value);
+        }
     }
 
     public string AmountOfEnergy

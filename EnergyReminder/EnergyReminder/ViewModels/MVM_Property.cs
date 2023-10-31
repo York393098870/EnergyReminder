@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+﻿using System.Collections.ObjectModel;
+using ReactiveUI;
 
 namespace EnergyReminder.ViewModels;
 
@@ -36,5 +37,23 @@ public partial class MainViewModel
     {
         get => _newAmountOfEnergy;
         set => this.RaiseAndSetIfChanged(ref _newAmountOfEnergy, value);
+    }
+
+    public ObservableCollection<string> ComboBoxItems
+    {
+        get => _comboBoxItems;
+        set => this.RaiseAndSetIfChanged(ref _comboBoxItems, value);
+    }
+
+    public string GameType
+    {
+        get => _gameType;
+        set => this.RaiseAndSetIfChanged(ref _gameType, value);
+    }
+
+    public string AccountID
+    {
+        get => _accoutID;
+        set => this.RaiseAndSetIfChanged(ref _accoutID, value);
     }
 }

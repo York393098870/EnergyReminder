@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:EnergyReminder.Views"
-        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="500"
-        Width="350" Height="500"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="600"
+        Width="350" Height="600"
         x:Class="EnergyReminder.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="EnergyReminder">

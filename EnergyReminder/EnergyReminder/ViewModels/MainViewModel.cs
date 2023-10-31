@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using CoreLibrary;
 using CoreLibrary.DataBase;
@@ -11,8 +11,14 @@ public partial class MainViewModel : ViewModelBase
 {
     public MainViewModel()
     {
+        Initialize(); //初始化
         StartCalculate = ReactiveCommand.Create(CalculateInformationAndShow);
-        InitializeDataBase();
+
+        ComboBoxItems = new ObservableCollection<string>
+        {
+            "默认账号1",
+            "默认账号2"
+        };
     }
 
     private void CalculateInformationAndShow()
@@ -39,15 +45,17 @@ public partial class MainViewModel : ViewModelBase
         }
     }
 
-    private void InitializeDataBase()
+    private void Initialize(bool update = false)
+        //初始化
     {
-        if (DataBase.CheckDataBaseIfExisted())
+        if (DataBase.CheckDataBaseIfExisted() && !update)
         {
+            //读取数据库当中的数据
             Console.WriteLine("DataBase existed.");
         }
         else
         {
-            DataBase.CreateDataBase();
+            DataBase.FirstUse();
             Console.WriteLine("DataBase created.");
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Reactive;
+﻿using System.Collections.ObjectModel;
+using System.Reactive;
 using ReactiveUI;
 
 namespace EnergyReminder.ViewModels;
@@ -10,6 +11,9 @@ public partial class MainViewModel
     private string _restOfTime = "0小时0分钟";
     private string _timeOfFullEnergy = "今日XX时XX分";
     private string _newAmountOfEnergy = "";
+    private ObservableCollection<string> _comboBoxItems = new();
+    private string _gameType = "无";
+    private string _accoutID = "尚未选择账号";
 
     public ReactiveCommand<Unit, Unit> StartCalculate { get; }
 }

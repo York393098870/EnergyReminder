@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**"/>
+        <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -17,9 +17,5 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.5" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\..\..\SR_EnergyReminder\CoreLibrary\CoreLibrary.csproj" />
     </ItemGroup>
 </Project>

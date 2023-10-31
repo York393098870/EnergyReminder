@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnergyReminder.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="500"
+             mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="600"
              x:Class="EnergyReminder.Views.MainView"
              x:DataType="vm:MainViewModel">
     <Design.DataContext>
@@ -16,11 +16,25 @@
 
             <StackPanel Orientation="Horizontal" Margin="50,60,0,0">
                 <TextBlock VerticalAlignment="Center" Margin="0,0,0,0">当前绑定的账号:</TextBlock>
-                <ComboBox VerticalAlignment="Center" Margin="20,0,0,0" SelectedIndex="{Binding AccountIndex}">
-                    <ComboBoxItem>账号1</ComboBoxItem>
-                    <ComboBoxItem>账号2</ComboBoxItem>
+                <ComboBox VerticalAlignment="Center" Margin="20,0,0,0" ItemsSource="{Binding ComboBoxItems}"
+                          SelectedIndex="{Binding AccountIndex}">
                 </ComboBox>
             </StackPanel>
+
+            <Border BorderBrush="Black" Background="Gainsboro" BorderThickness="1" Margin="20,30,20,0">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center">当前账号信息一览：</TextBlock>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <TextBlock>游戏类型:</TextBlock>
+                        <TextBlock Text="{Binding GameType}"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <TextBlock>账号ID:</TextBlock>
+                        <TextBlock Text="{Binding AccountID}"></TextBlock>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
 
             <StackPanel Orientation="Horizontal" Margin="40,30,0,0">
                 <StackPanel.Styles>

@@ -35,7 +35,7 @@ public partial class MainViewModel : ViewModelBase
     {
         using var transaction = new TransactionScope();
 
-        AmountOfEnergyNow = (int.Parse(NewAmountOfEnergy) - 1).ToString();
+        AmountOfEnergyNow = NewAmountOfEnergy;
         var restOfEnergy = 240 - int.Parse(AmountOfEnergyNow);
         var timeCalculator = new OldTimeCalculator(restOfEnergy);
         var resultOfNewDueTime = timeCalculator.TimeCalculate();
@@ -76,7 +76,7 @@ public partial class MainViewModel : ViewModelBase
     {
         var energyBasicData = DataBase.GetEnergyDataByUuid(uuid);
         TimeOfFullEnergy = energyBasicData.EnergyFullTime;
-        AmountOfEnergyNow = NewCalculator.CalculateNewEnergy(TimeOfFullEnergy).EnergyNow.ToString();
+        AmountOfEnergyNow = (NewCalculator.CalculateNewEnergy(TimeOfFullEnergy).EnergyNow-1).ToString();
         RestOfTime =
             NewCalculator.CalculateTimeForEnergyFill(NewCalculator.CalculateNewEnergy(TimeOfFullEnergy).EnergyNow);
         GameType = energyBasicData.GameType;

@@ -10,4 +10,8 @@
       <PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.13" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Test\" />
+    </ItemGroup>
+
 </Project>

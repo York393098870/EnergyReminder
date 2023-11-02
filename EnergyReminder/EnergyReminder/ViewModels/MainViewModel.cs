@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using CoreLibrary;
 using CoreLibrary.DataBase;
+using CoreLibrary.Tools;
 using ReactiveUI;
 
 namespace EnergyReminder.ViewModels;
@@ -11,20 +12,33 @@ public partial class MainViewModel : ViewModelBase
 {
     public MainViewModel()
     {
-        Initialize(); //初始化
+        InitializeDataBase(); //初始化数据库
+
+        Test(); //Todo: Remove this line.This is Only For Test.
+
         StartCalculate = ReactiveCommand.Create(CalculateInformationAndShow);
 
-        ComboBoxItems = new ObservableCollection<string>
+        var userBasicDataDictionary = DataBase.GetUserBasicDataDictionary();
+        ComboBoxItems = new ObservableCollection<string>();
+
+
+        foreach (var value in userBasicDataDictionary.Values)
         {
-            "默认账号1",
-            "默认账号2"
-        };
+            ComboBoxItems.Add(value);
+        }
+
+        SelectedItem = ComboBoxItems[0];
+
+        UuidShowed = CoreTools.GetKeyFromValue(DataBase.GetUserBasicDataDictionary(), SelectedItem);
+
+
+        TimeOfFullEnergy = DataBase.GetEnergyDataByUuid(UuidShowed).EnergyFullTime;
     }
 
     private void CalculateInformationAndShow()
     {
         AmountOfEnergy = NewAmountOfEnergy;
-        var restOfEnergy = 240 - int.Parse(AmountOfEnergy);
+        var restOfEnergy = 239 - int.Parse(AmountOfEnergy);
         var timeCalculator = new TimeCalculator(restOfEnergy);
         var resultOfNewDueTime = timeCalculator.TimeCalculate();
         var restOfTime = timeCalculator.ConvertMinutesToHours(timeCalculator.CalculateRestOfMinutes()).TimePeriod;
@@ -34,29 +48,28 @@ public partial class MainViewModel : ViewModelBase
 
     private void ChangedItem(int option)
     {
-        switch (option)
-        {
-            case 1:
-                AmountOfEnergy = "0";
-                RestOfTime = "0小时0分钟";
-                break;
-            default:
-                return;
-        }
+        //当选择的账号发生变化时，更新显示的数据
+        var newSelectedItem = ComboBoxItems[option];
+        UuidShowed = CoreTools.GetKeyFromValue(DataBase.GetUserBasicDataDictionary(), newSelectedItem);
     }
 
-    private void Initialize(bool update = false)
+    private void InitializeDataBase(bool update = false)
         //初始化
     {
         if (DataBase.CheckDataBaseIfExisted() && !update)
         {
             //读取数据库当中的数据
-            Console.WriteLine("DataBase existed.");
+            Console.WriteLine("数据库已存在，将读取已有的数据库数据。");
         }
         else
         {
             DataBase.FirstUse();
-            Console.WriteLine("DataBase created.");
+            Console.WriteLine("数据库不存在，将创建新的数据库。");
         }
+    }
+
+    private void Test()
+    {
+        DataBase.TestMethod();
     }
 }

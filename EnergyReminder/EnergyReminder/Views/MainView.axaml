@@ -17,7 +17,7 @@
             <StackPanel Orientation="Horizontal" Margin="50,60,0,0">
                 <TextBlock VerticalAlignment="Center" Margin="0,0,0,0">当前绑定的账号:</TextBlock>
                 <ComboBox VerticalAlignment="Center" Margin="20,0,0,0" ItemsSource="{Binding ComboBoxItems}"
-                          SelectedIndex="{Binding AccountIndex}">
+                          SelectedIndex="{Binding AccountIndex}" SelectedItem="{Binding SelectedItem}">
                 </ComboBox>
             </StackPanel>
 
@@ -30,7 +30,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                         <TextBlock>账号ID:</TextBlock>
-                        <TextBlock Text="{Binding AccountID}"></TextBlock>
+                        <TextBlock Text="{Binding UuidShowed}"></TextBlock>
                     </StackPanel>
 
                 </StackPanel>

@@ -8,7 +8,8 @@
         Width="350" Height="600"
         x:Class="EnergyReminder.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="EnergyReminder">
+        Title="EnergyReminder"
+        WindowStartupLocation="CenterScreen">
 
     <views:MainView />
 

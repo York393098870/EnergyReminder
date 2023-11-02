@@ -6,6 +6,7 @@ public partial class DataBase
 {
     private static void CreateDataBase()
     {
+        //创建数据库
         var connectionStringBuilder = new SqliteConnectionStringBuilder
         {
             DataSource = GlobalVariables.FullPath
@@ -36,7 +37,7 @@ public partial class DataBase
                                                                              Id INTEGER PRIMARY KEY AUTOINCREMENT,
                                                                              UUID TEXT NOT NULL,
                                                                              AmountOfEnergy INTEGER NOT NULL,
-                                                                             LastUpdateTime TEXT NOT NULL,
+                                                                             LastUpdateTime TEXT NOT NULL,GameType TEXT NOT NULL,EnergyFullTime TEXT NOT NULL,
                                                                              FOREIGN KEY(UUID) REFERENCES Users(UUID)
                                                                          );
                                                                          
@@ -46,6 +47,4 @@ public partial class DataBase
 
         transaction.Commit();
     }
-    
-    
 }

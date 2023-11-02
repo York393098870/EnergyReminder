@@ -51,9 +51,15 @@ public partial class MainViewModel
         set => this.RaiseAndSetIfChanged(ref _gameType, value);
     }
 
-    public string AccountID
+    public string UuidShowed
     {
-        get => _accoutID;
-        set => this.RaiseAndSetIfChanged(ref _accoutID, value);
+        get => _uuidShowed;
+        set => this.RaiseAndSetIfChanged(ref _uuidShowed, value);
+    }
+    
+    public string SelectedItem
+    {
+        get => _selectedItem;
+        set => this.RaiseAndSetIfChanged(ref _selectedItem, value);
     }
 }

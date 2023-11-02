@@ -13,7 +13,8 @@ public partial class MainViewModel
     private string _newAmountOfEnergy = "";
     private ObservableCollection<string> _comboBoxItems = new();
     private string _gameType = "无";
-    private string _accoutID = "尚未选择账号";
+    private string _uuidShowed = "尚未选择账号";
+    private string _selectedItem = "";
 
     public ReactiveCommand<Unit, Unit> StartCalculate { get; }
 }

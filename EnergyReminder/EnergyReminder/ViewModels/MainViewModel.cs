@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Transactions;
 using CoreLibrary;
 using CoreLibrary.DataBase;
 using CoreLibrary.Tools;
@@ -31,19 +32,24 @@ public partial class MainViewModel : ViewModelBase
 
         UuidShowed = CoreTools.GetKeyFromValue(DataBase.GetUserBasicDataDictionary(), SelectedItem);
 
-
-        TimeOfFullEnergy = DataBase.GetEnergyDataByUuid(UuidShowed).EnergyFullTime;
+        UpdateUiData(UuidShowed);
     }
 
     private void CalculateInformationAndShow()
     {
-        AmountOfEnergy = NewAmountOfEnergy;
-        var restOfEnergy = 239 - int.Parse(AmountOfEnergy);
-        var timeCalculator = new TimeCalculator(restOfEnergy);
+        using var transaction = new TransactionScope();
+
+        AmountOfEnergyNow = NewAmountOfEnergy;
+        var restOfEnergy = 239 - int.Parse(AmountOfEnergyNow);
+        var timeCalculator = new OldTimeCalculator(restOfEnergy);
         var resultOfNewDueTime = timeCalculator.TimeCalculate();
         var restOfTime = timeCalculator.ConvertMinutesToHours(timeCalculator.CalculateRestOfMinutes()).TimePeriod;
         RestOfTime = restOfTime;
         TimeOfFullEnergy = resultOfNewDueTime.ToString(CultureInfo.CurrentCulture);
+        DataBase.UpdateEnergy(uuid: UuidShowed, amountOfEnergy: int.Parse(AmountOfEnergyNow),
+            lastUpdateTime: DateTime.Now.ToString(CultureInfo.CurrentCulture));
+
+        transaction.Complete();
     }
 
     private void ChangedItem(int option)
@@ -51,6 +57,7 @@ public partial class MainViewModel : ViewModelBase
         //当选择的账号发生变化时，更新显示的数据
         var newSelectedItem = ComboBoxItems[option];
         UuidShowed = CoreTools.GetKeyFromValue(DataBase.GetUserBasicDataDictionary(), newSelectedItem);
+        UpdateUiData(UuidShowed);
     }
 
     private void InitializeDataBase(bool update = false)
@@ -71,5 +78,15 @@ public partial class MainViewModel : ViewModelBase
     private void Test()
     {
         DataBase.TestMethod();
+    }
+
+    private void UpdateUiData(string uuid)
+    {
+        var energyBasicData = DataBase.GetEnergyDataByUuid(UuidShowed);
+        TimeOfFullEnergy = energyBasicData.EnergyFullTime;
+        AmountOfEnergyNow = NewCalculator.CalculateNewEnergy(TimeOfFullEnergy).EnergyNow.ToString();
+        RestOfTime =
+            NewCalculator.CalculateTimeForEnergyFill(NewCalculator.CalculateNewEnergy(TimeOfFullEnergy).EnergyNow);
+        GameType = energyBasicData.GameType;
     }
 }

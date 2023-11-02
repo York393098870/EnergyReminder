@@ -8,13 +8,13 @@ public partial class DataBase
     public static void FirstUse()
     {
         using var transaction = new TransactionScope();
-        
+
         CreateDataBase();
         InitializeInsert();
         transaction.Complete();
     }
 
-    public static void InitializeInsert()
+    private static void InitializeInsert()
     {
         InsertData(tableName: "Users", data: new Dictionary<string, object>
         {
@@ -37,13 +37,17 @@ public partial class DataBase
         if (!enable) return;
         InsertData(tableName: "Users", data: new Dictionary<string, object>
         {
-            { "UUID", "100001" },
-            { "Username", "测试用户" }
+            { "UUID", "000002" },
+            { "Username", "测试" }
         });
         InsertData(tableName: "Energy", data: new Dictionary<string, object>
         {
-            { "UUID", "100001" }, { "AmountOfEnergy", 2 },
-            { "LastUpdateTime", DateTime.Now.ToString(CultureInfo.CurrentCulture) }, { "GameType", "崩坏：星穹铁道" }
+            { "UUID", "000002" }, { "AmountOfEnergy", 2 },
+            { "LastUpdateTime", DateTime.Now.ToString(CultureInfo.CurrentCulture) }, { "GameType", "崩坏：星穹铁道" },
+            {
+                "EnergyFullTime",
+                DateTime.Now.AddHours(24).ToString(CultureInfo.CurrentCulture)
+            }
         });
     }
 }

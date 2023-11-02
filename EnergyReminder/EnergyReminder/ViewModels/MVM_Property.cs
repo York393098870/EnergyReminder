@@ -15,10 +15,10 @@ public partial class MainViewModel
         }
     }
 
-    public string AmountOfEnergy
+    public string AmountOfEnergyNow
     {
-        get => _amountOfEnergy;
-        set => this.RaiseAndSetIfChanged(ref _amountOfEnergy, value);
+        get => _amountOfEnergyNow;
+        set => this.RaiseAndSetIfChanged(ref _amountOfEnergyNow, value);
     }
 
     public string RestOfTime

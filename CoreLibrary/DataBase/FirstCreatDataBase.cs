@@ -1,6 +1,6 @@
-﻿namespace CoreLibrary.DataBase;
+﻿using Microsoft.Data.Sqlite;
 
-using Microsoft.Data.Sqlite;
+namespace CoreLibrary.DataBase;
 
 public partial class DataBase
 {

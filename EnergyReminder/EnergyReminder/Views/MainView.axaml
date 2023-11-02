@@ -17,8 +17,7 @@
             <StackPanel Orientation="Horizontal" Margin="50,60,0,0">
                 <TextBlock VerticalAlignment="Center" Margin="0,0,0,0">当前绑定的账号:</TextBlock>
                 <ComboBox VerticalAlignment="Center" Margin="20,0,0,0" ItemsSource="{Binding ComboBoxItems}"
-                          SelectedIndex="{Binding AccountIndex}" SelectedItem="{Binding SelectedItem}">
-                </ComboBox>
+                          SelectedIndex="{Binding AccountIndex}" SelectedItem="{Binding SelectedItem}" />
             </StackPanel>
 
             <Border BorderBrush="Black" Background="Gainsboro" BorderThickness="1" Margin="20,30,20,0">
@@ -26,11 +25,11 @@
                     <TextBlock HorizontalAlignment="Center">当前账号信息一览：</TextBlock>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                         <TextBlock>游戏类型:</TextBlock>
-                        <TextBlock Text="{Binding GameType}"></TextBlock>
+                        <TextBlock Text="{Binding GameType}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                         <TextBlock>账号ID:</TextBlock>
-                        <TextBlock Text="{Binding UuidShowed}"></TextBlock>
+                        <TextBlock Text="{Binding UuidShowed}" />
                     </StackPanel>
 
                 </StackPanel>

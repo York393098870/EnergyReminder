@@ -8,13 +8,13 @@ public class NewCalculator
         var energyFullTime = DateTime.Parse(energyFullTIme);
         var restOfMinutes = (energyFullTime - dateTimeNow).TotalMinutes;
         var restOfEnergy = (int)(restOfMinutes / 6);
-        var energyNow = 239 - restOfEnergy;
+        var energyNow = 240 - restOfEnergy;
         return (RestOfEnergy: restOfEnergy, EnergyNow: energyNow);
     }
 
     public static string CalculateTimeForEnergyFill(int energyNow)
     {
-        var energyDifference = 239 - energyNow;
+        var energyDifference = 240 - energyNow;
         var result = ConvertMinutesToHours(energyDifference * 6);
         return result.TimePeriod;
     }

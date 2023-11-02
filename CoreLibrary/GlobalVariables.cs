@@ -1,8 +1,5 @@
 ﻿namespace CoreLibrary;
 
-using System;
-using System.IO;
-
 public class GlobalVariables
 {
     private static string FilePath { get; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);

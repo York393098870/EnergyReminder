@@ -19,10 +19,7 @@ public partial class DataBase
 
         command.CommandText = $"INSERT INTO {tableName} ({columns}) VALUES ({parameters})";
 
-        foreach (var item in data)
-        {
-            command.Parameters.AddWithValue("@" + item.Key, item.Value);
-        }
+        foreach (var item in data) command.Parameters.AddWithValue("@" + item.Key, item.Value);
 
         command.ExecuteNonQuery();
         transaction.Commit();
@@ -49,11 +46,11 @@ public partial class DataBase
         return userDictionary;
     }
 
-    public static EnergyData? GetEnergyDataByUuid(string uuid)
+    public static EnergyData GetEnergyDataByUuid(string uuid)
     {
         var connectionStringBuilder = new SqliteConnectionStringBuilder
         {
-            DataSource = GlobalVariables.FullPath
+            DataSource = FullPath
         };
 
         using var connection = new SqliteConnection(connectionStringBuilder.ToString());
@@ -82,38 +79,45 @@ public partial class DataBase
         };
     }
 
-    public static void UpdateEnergy(string uuid, int? amountOfEnergy = null, string? lastUpdateTime = null,
-        string? gameType = null,
-        string? energyFullTime = null)
+    public static void UpdateEnergyToDataBase(string uuid, int? amountOfEnergy = null, string? lastUpdateTime = null,
+        string? gameType = null, string? energyFullTime = null)
     {
-        Console.WriteLine("尝试写入");
-
         var connectionString = "Data Source=" + FullPath;
-
         using var connection = new SqliteConnection(connectionString);
-
         connection.Open();
-
         using var transaction = connection.BeginTransaction();
+
         var command = connection.CreateCommand();
+        var setClauses = new List<string>();
 
-        command.CommandText = """
-                              
-                                      UPDATE Energy
-                                      SET
-                                        AmountOfEnergy = COALESCE(@AmountOfEnergy, AmountOfEnergy),
-                                        LastUpdateTime = COALESCE(@LastUpdateTime, LastUpdateTime),
-                                        GameType = COALESCE(@GameType, GameType),
-                                        EnergyFullTime = COALESCE(@EnergyFullTime, EnergyFullTime)
-                                      WHERE UUID = @UUID
-                                    
-                              """;
+        if (AddParameterIfNotNull(command, "@AmountOfEnergy", amountOfEnergy))
 
+            setClauses.Add("AmountOfEnergy = @AmountOfEnergy");
+
+        if (AddParameterIfNotNull(command, "@LastUpdateTime", lastUpdateTime))
+
+            setClauses.Add("LastUpdateTime = @LastUpdateTime");
+
+        if (AddParameterIfNotNull(command, "@GameType", gameType))
+
+            setClauses.Add("GameType = @GameType");
+
+        if (AddParameterIfNotNull(command, "@EnergyFullTime", energyFullTime))
+
+            setClauses.Add("EnergyFullTime = @EnergyFullTime");
+
+        if (setClauses.Count == 0)
+        {
+            Console.WriteLine("没有提供更新的信息，操作取消。");
+            return;
+        }
+
+        command.CommandText = $"""
+                                 UPDATE Energy
+                                 SET {string.Join(", ", setClauses)}
+                                 WHERE UUID = @UUID
+                               """;
         command.Parameters.AddWithValue("@UUID", uuid);
-        command.Parameters.AddWithValue("@AmountOfEnergy", amountOfEnergy);
-        command.Parameters.AddWithValue("@LastUpdateTime", lastUpdateTime);
-        command.Parameters.AddWithValue("@GameType", gameType);
-        command.Parameters.AddWithValue("@EnergyFullTime", energyFullTime);
 
         try
         {
@@ -124,9 +128,14 @@ public partial class DataBase
         catch (Exception ex)
         {
             transaction.Rollback();
-            Console.WriteLine("数据库写入失败,可能存在冲突。");
-            Console.WriteLine("异常消息:" + ex.Message);
-            Console.WriteLine("堆栈跟踪:" + ex.StackTrace);
+            throw new Exception("数据库写入失败，可能存在冲突。", ex);
         }
+    }
+
+    private static bool AddParameterIfNotNull(SqliteCommand command, string parameterName, object? value)
+    {
+        if (value == null) return false; // Parameter was not added
+        command.Parameters.AddWithValue(parameterName, value);
+        return true; // Parameter was added
     }
 }

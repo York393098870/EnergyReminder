@@ -16,12 +16,12 @@ public partial class DataBase
 
     private static void InitializeInsert()
     {
-        InsertData(tableName: "Users", data: new Dictionary<string, object>
+        InsertData("Users", new Dictionary<string, object>
         {
             { "UUID", "000001" },
             { "Username", "默认用户" }
         });
-        InsertData(tableName: "Energy", data: new Dictionary<string, object>
+        InsertData("Energy", new Dictionary<string, object>
         {
             { "UUID", "000001" }, { "AmountOfEnergy", 1 },
             { "LastUpdateTime", DateTime.Now.ToString(CultureInfo.CurrentCulture) }, { "GameType", "崩坏：星穹铁道" },
@@ -30,17 +30,14 @@ public partial class DataBase
                 DateTime.Now.AddHours(24).ToString(CultureInfo.CurrentCulture)
             }
         });
-    }
 
-    public static void TestMethod(bool enable = false)
-    {
-        if (!enable) return;
-        InsertData(tableName: "Users", data: new Dictionary<string, object>
+        //初始化2个账号备用，后续可以修改
+        InsertData("Users", new Dictionary<string, object>
         {
             { "UUID", "000002" },
             { "Username", "测试" }
         });
-        InsertData(tableName: "Energy", data: new Dictionary<string, object>
+        InsertData("Energy", new Dictionary<string, object>
         {
             { "UUID", "000002" }, { "AmountOfEnergy", 2 },
             { "LastUpdateTime", DateTime.Now.ToString(CultureInfo.CurrentCulture) }, { "GameType", "崩坏：星穹铁道" },

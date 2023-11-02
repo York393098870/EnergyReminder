@@ -15,7 +15,6 @@ public partial class MainViewModel : ViewModelBase
     {
         InitializeDataBase(); //初始化数据库
 
-        Test(); //Todo: Remove this line.This is Only For Test.
 
         StartCalculate = ReactiveCommand.Create(CalculateInformationAndShow);
 
@@ -23,10 +22,7 @@ public partial class MainViewModel : ViewModelBase
         ComboBoxItems = new ObservableCollection<string>();
 
 
-        foreach (var value in userBasicDataDictionary.Values)
-        {
-            ComboBoxItems.Add(value);
-        }
+        foreach (var value in userBasicDataDictionary.Values) ComboBoxItems.Add(value);
 
         SelectedItem = ComboBoxItems[0];
 
@@ -39,15 +35,15 @@ public partial class MainViewModel : ViewModelBase
     {
         using var transaction = new TransactionScope();
 
-        AmountOfEnergyNow = NewAmountOfEnergy;
-        var restOfEnergy = 239 - int.Parse(AmountOfEnergyNow);
+        AmountOfEnergyNow = (int.Parse(NewAmountOfEnergy) - 1).ToString();
+        var restOfEnergy = 240 - int.Parse(AmountOfEnergyNow);
         var timeCalculator = new OldTimeCalculator(restOfEnergy);
         var resultOfNewDueTime = timeCalculator.TimeCalculate();
         var restOfTime = timeCalculator.ConvertMinutesToHours(timeCalculator.CalculateRestOfMinutes()).TimePeriod;
         RestOfTime = restOfTime;
         TimeOfFullEnergy = resultOfNewDueTime.ToString(CultureInfo.CurrentCulture);
-        DataBase.UpdateEnergy(uuid: UuidShowed, amountOfEnergy: int.Parse(AmountOfEnergyNow),
-            lastUpdateTime: DateTime.Now.ToString(CultureInfo.CurrentCulture));
+        DataBase.UpdateEnergyToDataBase(UuidShowed, int.Parse(AmountOfEnergyNow),
+            DateTime.Now.ToString(CultureInfo.CurrentCulture), energyFullTime: TimeOfFullEnergy);
 
         transaction.Complete();
     }
@@ -75,14 +71,10 @@ public partial class MainViewModel : ViewModelBase
         }
     }
 
-    private void Test()
-    {
-        DataBase.TestMethod();
-    }
 
     private void UpdateUiData(string uuid)
     {
-        var energyBasicData = DataBase.GetEnergyDataByUuid(UuidShowed);
+        var energyBasicData = DataBase.GetEnergyDataByUuid(uuid);
         TimeOfFullEnergy = energyBasicData.EnergyFullTime;
         AmountOfEnergyNow = NewCalculator.CalculateNewEnergy(TimeOfFullEnergy).EnergyNow.ToString();
         RestOfTime =

@@ -56,7 +56,7 @@ public partial class MainViewModel
         get => _uuidShowed;
         set => this.RaiseAndSetIfChanged(ref _uuidShowed, value);
     }
-    
+
     public string SelectedItem
     {
         get => _selectedItem;

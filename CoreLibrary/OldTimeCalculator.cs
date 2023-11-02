@@ -2,9 +2,6 @@
 
 public class OldTimeCalculator
 {
-    private int RestOfEnergy { get; set; }
-
-
     public OldTimeCalculator(int restOfEnergy)
     {
         RestOfEnergy = restOfEnergy;
@@ -12,6 +9,8 @@ public class OldTimeCalculator
 
         //throw new Exception("TimeCalculator初始化失败，参数不合法");
     }
+
+    private int RestOfEnergy { get; }
 
     public DateTime TimeCalculate()
     {

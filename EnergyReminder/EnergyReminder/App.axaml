@@ -9,6 +9,10 @@
         <local:ViewLocator />
     </Application.DataTemplates>
 
+    <Application.Resources>
+        <FontFamily x:Key="MiFont">avares://EnergyReminder/Assets/Fonts#MiSans</FontFamily>
+    </Application.Resources>
+
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>

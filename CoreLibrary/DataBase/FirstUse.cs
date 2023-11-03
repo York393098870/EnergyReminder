@@ -19,7 +19,7 @@ public partial class DataBase
         InsertData("Users", new Dictionary<string, object>
         {
             { "UUID", "000001" },
-            { "Username", "默认用户" }
+            { "Username", "国服账号" }
         });
         InsertData("Energy", new Dictionary<string, object>
         {
@@ -35,7 +35,7 @@ public partial class DataBase
         InsertData("Users", new Dictionary<string, object>
         {
             { "UUID", "000002" },
-            { "Username", "测试" }
+            { "Username", "外服账号" }
         });
         InsertData("Energy", new Dictionary<string, object>
         {

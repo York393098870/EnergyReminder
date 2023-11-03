@@ -29,6 +29,8 @@ public partial class MainViewModel : ViewModelBase
         UuidShowed = CoreTools.GetKeyFromValue(DataBase.GetUserBasicDataDictionary(), SelectedItem);
 
         UpdateUiData(UuidShowed);
+
+       
     }
 
     private void CalculateInformationAndShow()

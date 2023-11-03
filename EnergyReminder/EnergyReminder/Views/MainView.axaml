@@ -13,8 +13,19 @@
     </Design.DataContext>
     <Grid>
         <StackPanel>
+            <StackPanel.Styles>
+                <Style Selector="TextBlock">
+                    <Setter Property="FontFamily" Value="{StaticResource MiFont}"></Setter>
+                </Style>
+                <Style Selector="ComboBox">
+                    <Setter Property="FontFamily" Value="{StaticResource MiFont}"></Setter>
+                </Style>
+                <Style Selector="Button">
+                    <Setter Property="FontFamily" Value="{StaticResource MiFont}"></Setter>
+                </Style>
+            </StackPanel.Styles>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
 
-            <StackPanel Orientation="Horizontal" Margin="50,60,0,0">
                 <TextBlock VerticalAlignment="Center" Margin="0,0,0,0">当前绑定的账号:</TextBlock>
                 <ComboBox VerticalAlignment="Center" Margin="20,0,0,0" ItemsSource="{Binding ComboBoxItems}"
                           SelectedIndex="{Binding AccountIndex}" SelectedItem="{Binding SelectedItem}" />
@@ -22,17 +33,40 @@
 
             <Border BorderBrush="Black" Background="Gainsboro" BorderThickness="1" Margin="20,30,20,0">
                 <StackPanel>
-                    <TextBlock HorizontalAlignment="Center">当前账号信息一览：</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" Margin="10,10,0,0">账号基本信息：</TextBlock>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
+                        <TextBlock>ID:</TextBlock>
+                        <TextBlock Text="{Binding UuidShowed}" Foreground="DarkViolet" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,15,0,0">
                         <TextBlock>游戏类型:</TextBlock>
                         <TextBlock Text="{Binding GameType}" />
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
-                        <TextBlock>账号ID:</TextBlock>
-                        <TextBlock Text="{Binding UuidShowed}" />
+
+
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Blue" Background="Bisque" BorderThickness="1" Margin="20,30,20,0">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+                        <TextBlock Margin="0,0,0,0">当前体力值：</TextBlock>
+                        <TextBlock Text="{Binding AmountOfEnergyNow}" Foreground="Blue" />
+                        <TextBlock>/240</TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,15,0,0">
+                        <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">体力补满所需时长：</TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0"
+                                   Text="{Binding RestOfTime}" Foreground="Red" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="0,15,0,0">
+                        <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">下一次体力补满的时间点：</TextBlock>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0"
+                                   Text="{Binding TimeOfFullEnergy}" Foreground="Fuchsia" />
                     </StackPanel>
 
                 </StackPanel>
+
             </Border>
 
             <StackPanel Orientation="Horizontal" Margin="40,30,0,0">
@@ -46,22 +80,6 @@
                 <Button Margin="10,0,0,0" VerticalAlignment="Center" Command="{Binding StartCalculate}">确定修改</Button>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" Margin="-5,30,0,0" HorizontalAlignment="Center">
-                <TextBlock Margin="0,0,0,0" VerticalAlignment="Center">当前体力值：</TextBlock>
-                <TextBlock VerticalAlignment="Center" Text="{Binding AmountOfEnergyNow}" />
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical" Margin="-5,30,0,0">
-                <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">体力补满所需时长：</TextBlock>
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,0"
-                           Text="{Binding RestOfTime}" />
-            </StackPanel>
-
-            <StackPanel Orientation="Vertical" Margin="-10,30,0,0">
-                <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">下一次体力补满的时间点：</TextBlock>
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0"
-                           Text="{Binding TimeOfFullEnergy}" />
-            </StackPanel>
 
         </StackPanel>
 

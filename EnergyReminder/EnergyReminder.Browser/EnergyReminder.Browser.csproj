@@ -1,20 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
-        <WasmMainJSPath>AppBundle\main.js</WasmMainJSPath>
-        <OutputType>Exe</OutputType>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <WasmExtraFilesToDeploy Include="AppBundle\**"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Avalonia.Browser" Version="11.0.5"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\EnergyReminder\EnergyReminder.csproj"/>
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <WasmMainJSPath>AppBundle\main.js</WasmMainJSPath>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <WasmExtraFilesToDeploy Include="AppBundle\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Browser" Version="11.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnergyReminder\EnergyReminder.csproj" />
+  </ItemGroup>
 </Project>

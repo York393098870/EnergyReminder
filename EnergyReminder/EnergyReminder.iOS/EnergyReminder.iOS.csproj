@@ -1,16 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net7.0-ios</TargetFramework>
-        <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Avalonia.iOS" Version="11.0.5"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\EnergyReminder\EnergyReminder.csproj"/>
-    </ItemGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnergyReminder\EnergyReminder.csproj" />
+  </ItemGroup>
 </Project>
